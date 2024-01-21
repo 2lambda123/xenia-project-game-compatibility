@@ -7,7 +7,17 @@ on:
   pull_request:    # Yes, someone actually did this;
     types: opened  # https://github.com/xenia-project/game-compatibility/pull/1501
 jobs:
-  autoclose:
+  autoclose: 
+    env:
+        ACTION: ${{ github.action }}
+        JOB: ${{ github.job }}
+        GITHUB_REF: ${{ github.ref }}
+        GITHUB_EVENT_NAME: ${{ github.event_name }}
+      run: |
+        echo 'Job failure notification'
+          # Add error logging and notifications
+          # TODO: Add code for error logging and notifications
+          echo 'Error logged and notification sent'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 # Needed by gh
